@@ -1,0 +1,25 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Trebuchet MS", Arial, sans-serif;
+  margin: 0;
+}
+
+.header {
+  padding: 3rem 3rem 1rem;
+  border-bottom: 1px solid #d9d9df;
+}
+h1 {
+  font-size: 4rem;
+  margin: 0;
+}
+
+#crop-master {
+  border: 1px solid #d9d9df;
+  margin: 3rem auto;
+  display: block;
+  width: 900px;
+  height: 500px;
+}
