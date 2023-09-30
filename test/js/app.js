@@ -1,4 +1,4 @@
-"use strict";
+import adjustDimension from "./utils/adjustDimension.js";
 // Fetch the canvas and get its 2D context
 const cropper = document.getElementById("crop-master");
 const ctx = cropper.getContext("2d");
@@ -8,23 +8,23 @@ cropper.width = 900;
 cropper.height = 500;
 const adjImg = adjustDimension({ x: image.width, y: image.height });
 image.addEventListener("load", function () {
-    ctx === null || ctx === void 0 ? void 0 : ctx.drawImage(image, (900 - adjImg.x) / 2, (500 - adjImg.y) / 2, adjImg.x, adjImg.y);
+    ctx?.drawImage(image, (900 - adjImg.x) / 2, (500 - adjImg.y) / 2, adjImg.x, adjImg.y);
 });
-function adjustDimension(dim, exDim = { x: 900, y: 500 }) {
-    let adjustedX = dim.x;
-    let adjustedY = dim.y;
-    // If width exceeds 900, adjust width to 900 and maintain aspect ratio for height
-    if (dim.x > exDim.x) {
-        adjustedX = exDim.x;
-        adjustedY = (dim.y * exDim.x) / dim.x;
-    }
-    // If height after width adjustment exceeds 500, adjust height to 500 and maintain aspect ratio for width
-    if (adjustedY > exDim.y) {
-        adjustedY = exDim.y;
-        adjustedX = (dim.x * exDim.y) / dim.y;
-    }
-    return {
-        x: adjustedX,
-        y: adjustedY,
+function debounce(func, delay) {
+    let timeoutId;
+    return function (...args) {
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => {
+            func(...args);
+        }, delay);
     };
 }
+// Example usage for logging the zoom level with a 100ms delay
+let zoomLevel = 0;
+const logZoomLevel = debounce(() => {
+    console.log(zoomLevel);
+}, 100);
+cropper.addEventListener("wheel", () => {
+    zoomLevel += 1;
+    logZoomLevel();
+});

@@ -9,7 +9,7 @@ body {
 
 .header {
   padding: 3rem 3rem 1rem;
-  border-bottom: 1px solid #d9d9df;
+  border-bottom: 1px solid black;
 }
 h1 {
   font-size: 4rem;
@@ -17,7 +17,7 @@ h1 {
 }
 
 #crop-master {
-  border: 1px solid #d9d9df;
+  border: 1px solid black;
   margin: 3rem auto;
   display: block;
   width: 900px;
